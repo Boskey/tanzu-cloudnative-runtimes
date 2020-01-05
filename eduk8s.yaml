@@ -1,0 +1,13 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: Workshop
+metadata:
+  name: lab-markdown-sample
+spec:
+  vendor: eduk8s.io
+  title: Markdown Sample
+  description: A sample workshop using Markdown
+  url: https://github.com/eduk8s/lab-markdown-sample
+  image: quay.io/eduk8s/lab-markdown-sample:master
+  duration: 15m
+  session:
+    budget: small
