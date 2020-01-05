@@ -70,9 +70,7 @@ ingress_domain: %ingress_domain%
 
 #### Console links
 
-[Projects](%console_url%)
-
-[Overview](%console_url%/#/overview?namespace=%session_namespace%)
+[Namespace](%console_url%/#/overview?namespace=%session_namespace%)
 
 #### Terminal links
 
