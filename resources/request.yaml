@@ -1,0 +1,7 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: WorkshopRequest
+metadata:
+  name: lab-markdown-sample
+spec:
+  environment: lab-markdown-sample
+  token: lab-markdown-sample
