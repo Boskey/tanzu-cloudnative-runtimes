@@ -3,5 +3,6 @@ kind: WorkshopRequest
 metadata:
   name: lab-markdown-sample
 spec:
-  environment: lab-markdown-sample
-  token: lab-markdown-sample
+  environment:
+    name: lab-markdown-sample
+    token: lab-markdown-sample
