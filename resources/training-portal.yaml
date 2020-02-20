@@ -1,9 +1,9 @@
 apiVersion: training.eduk8s.io/v1alpha1
-kind: TrainingRoom
+kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
-  workshop:
-    name: lab-markdown-sample
-  session:
+  portal:
     capacity: 1
+  workshops:
+  - name: lab-markdown-sample
