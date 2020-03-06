@@ -1,4 +1,5 @@
 .kube
+.cache
 .config
 .bash_history
 *.swp
