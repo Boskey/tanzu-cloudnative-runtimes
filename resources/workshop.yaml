@@ -11,3 +11,8 @@ spec:
   duration: 15m
   session:
     budget: small
+    applications:
+      console:
+        enabled: true
+      editor:
+        enabled: true
