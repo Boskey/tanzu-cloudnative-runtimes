@@ -48,34 +48,34 @@ sleep 3600
 
 #### Variable interpolation
 
-base_url: %base_url%
+base_url: {{ base_url }}
 
-console_url: %console_url%
+console_url: {{ console_url }}
 
-terminal_url: %terminal_url%
+terminal_url: {{ terminal_url }}
 
-slides_url: %slides_url%
+slides_url: {{ slides_url }}
 
-workshop_namespace: %workshop_namespace%
+workshop_namespace: {{ workshop_namespace }}
 
-session_namespace: %session_namespace%
+session_namespace: {{ session_namespace }}
 
-ingress_domain: %ingress_domain%
+ingress_domain: {{ ingress_domain }}
 
 #### Web site links
 
 [External](https://github.com/eduk8s)
 
-[Internal](%base_url%)
+[Internal]({{ base_url }})
 
 #### Console links
 
-[Namespace](%console_url%/#/overview?namespace=%session_namespace%)
+[Namespace]({{ console_url }}/#/overview?namespace={{ session_namespace }})
 
 #### Terminal links
 
-[Embedded](%terminal_url%)
+[Embedded]({{ terminal_url }})
 
-[Session 1](%terminal_url%/session/1)
+[Session 1]({{ terminal_url }}/session/1)
 
-[Session 2](%terminal_url%/session/2)
+[Session 2]({{ terminal_url }}/session/2)
