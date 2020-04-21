@@ -2,6 +2,7 @@
 .config
 .docker
 .bash_history
+.gitconfig
 .kube
 .local
 .ssh
