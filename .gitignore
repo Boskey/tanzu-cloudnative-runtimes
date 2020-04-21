@@ -1,5 +1,11 @@
-.kube
 .cache
 .config
+.docker
 .bash_history
+.kube
+.local
+.ssh
+.theia
+.webdav
+.yarn
 *.swp
