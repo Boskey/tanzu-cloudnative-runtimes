@@ -1,4 +1,5 @@
 .dockerignore
+.eduk8signore
 Dockerfile
 LICENSE
 README.md
