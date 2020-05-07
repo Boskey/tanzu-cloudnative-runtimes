@@ -1,5 +1,7 @@
 .dockerignore
 .eduk8signore
+.git
+.gitignore
 Dockerfile
 LICENSE
 README.md
