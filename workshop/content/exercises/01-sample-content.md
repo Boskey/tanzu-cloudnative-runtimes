@@ -67,15 +67,3 @@ ingress_domain: {{ ingress_domain }}
 [External](https://github.com/eduk8s)
 
 [Internal]({{ base_url }})
-
-#### Console links
-
-[Namespace]({{ console_url }}/#/overview?namespace={{ session_namespace }})
-
-#### Terminal links
-
-[Embedded]({{ terminal_url }})
-
-[Session 1]({{ terminal_url }}/session/1)
-
-[Session 2]({{ terminal_url }}/session/2)
