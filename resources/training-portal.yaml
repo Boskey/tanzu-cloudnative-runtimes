@@ -3,9 +3,8 @@ kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
-  portal:
+  workshops:
+  - name: lab-markdown-sample
     capacity: 1
     expires: 60m
     orphaned: 5m
-  workshops:
-  - name: lab-markdown-sample
