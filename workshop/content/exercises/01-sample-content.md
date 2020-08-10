@@ -17,11 +17,15 @@ echo "execute in terminal 1"
 ```
 
 ```execute-1
-echo "execute in terminal 1 (annotated)"
+echo "execute in terminal 1"
 ```
 
 ```execute-2
-echo "execute in terminal 2 (annotated)"
+echo "execute in terminal 2"
+```
+
+```execute-all
+echo "execute in all terminals"
 ```
 
 #### Click text to copy
@@ -48,22 +52,18 @@ sleep 3600
 
 #### Variable interpolation
 
-base_url: {{ base_url }}
-
-console_url: {{ console_url }}
-
-terminal_url: {{ terminal_url }}
-
-slides_url: {{ slides_url }}
-
-workshop_namespace: {{ workshop_namespace }}
+workshop_name: {{ workshop_name }}
 
 session_namespace: {{ session_namespace }}
 
+workshop_namespace: {{ workshop_namespace }}
+
+training_portal: {{ training_portal }}
+
 ingress_domain: {{ ingress_domain }}
+
+ingress_protocol: {{ ingress_protocol }}
 
 #### Web site links
 
 [External](https://github.com/eduk8s)
-
-[Internal]({{ base_url }})
