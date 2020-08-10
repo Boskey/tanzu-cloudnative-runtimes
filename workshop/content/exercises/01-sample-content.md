@@ -16,6 +16,8 @@ echo "standard code block"
 echo "execute in terminal 1"
 ```
 
+#### Click text to execute (with target)
+
 ```execute-1
 echo "execute in terminal 1"
 ```
