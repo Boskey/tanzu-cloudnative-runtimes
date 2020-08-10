@@ -15,6 +15,9 @@ spec:
   session:
     budget: small
     applications:
+      terminal:
+        enabled: true
+        layout: split
       console:
         enabled: true
       editor:
