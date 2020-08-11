@@ -3,6 +3,9 @@ kind: TrainingPortal
 metadata:
   name: lab-markdown-sample
 spec:
+  portal:
+    registration:
+      type: anonymous
   workshops:
   - name: lab-markdown-sample
     capacity: 1
