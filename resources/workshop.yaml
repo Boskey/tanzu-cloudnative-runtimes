@@ -13,7 +13,8 @@ spec:
     #image: quay.io/eduk8s/lab-markdown-sample:master
     files: github.com/eduk8s/lab-markdown-sample
   session:
-    budget: small
+    namespaces:
+      budget: small
     applications:
       terminal:
         enabled: true
