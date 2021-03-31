@@ -4,12 +4,12 @@ LAB - Markdown Sample
 Sample workshop content using Markdown formatting for pages.
 
 For more detailed information on how to create and deploy workshops, consult
-the documentation for eduk8s at:
+the documentation for Educates at:
 
-* https://docs.eduk8s.io
+* https://docs.edukates.io
 
-If you already have the eduk8s operator installed and configured, to deploy
-and view this sample workshop, run:
+If you already have the Educates operator installed and configured, to
+deploy and view this sample workshop, run:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/eduk8s/lab-markdown-sample/master/resources/workshop.yaml
