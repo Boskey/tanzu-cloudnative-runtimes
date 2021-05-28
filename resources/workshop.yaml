@@ -8,10 +8,10 @@ spec:
   vendor: eduk8s.io
   difficulty: beginner
   duration: 15m
-  url: https://github.com/Boskey/educates-learning
+  url: https://github.com/boskey/educates-learning
   content:
     #image: quay.io/eduk8s/lab-markdown-sample:master
-    files: github.com/Boskey/lab-markdown-sample
+    files: github.com/boskey/educates-learning
   session:
     namespaces:
       budget: small
