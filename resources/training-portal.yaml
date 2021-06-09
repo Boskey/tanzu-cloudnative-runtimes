@@ -7,7 +7,7 @@ spec:
     registration:
       type: anonymous
   workshops:
-  - name: lab-markdown-sample
+  - name: tanzu-cloudnative-runtimes
     capacity: 3
     expires: 60m
     orphaned: 5m

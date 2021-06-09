@@ -69,3 +69,8 @@ ingress_protocol: {{ ingress_protocol }}
 #### Web site links
 
 [External](https://github.com/eduk8s)
+
+```dashboard:create-dashboard
+name: Wavefront
+url: https://vmware.wavefront.com/dashboards/integration-kubernetes-summary#_v01(g:(d:7200,ls:!t,s:1623265449),p:(cluster_name:(d:Label,f:TAG_KEY,k:cluster,l:cluster,m:(Label:'*',Label_365:boksey-serverless),q:'collect(max(ts(%22kubernetes.cluster.cpu.limit%22),%20cluster),%20taggify(1,%20cluster,%20%22*%22))',s:Label_365)))
+```
