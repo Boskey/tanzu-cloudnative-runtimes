@@ -3,15 +3,15 @@ kind: Workshop
 metadata:
   name: tanzu-cloudnative-runtimes
 spec:
-  title: Serverless platform usiing Tanzu
+  title: Serverless Development using Tanzu Cloud Native Runtimes
   description: A workshop to showcase serverless capabilities in Tanzu
   vendor: eduk8s.io
   difficulty: beginner
   duration: 15m
-  url: https://github.com/boskey/educates-learning
+  url: https://github.com/boskey/tanzu-cloudnative-runtimes
   content:
     #image: quay.io/eduk8s/lab-markdown-sample:master
-    files: github.com/boskey/educates-learning
+    files: github.com/boskey/tanzu-cloudnative-runtimes
   session:
     namespaces:
       budget: small
