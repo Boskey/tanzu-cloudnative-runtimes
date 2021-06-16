@@ -1,5 +1,5 @@
 modules:
-    workshop-overview:
+    overview:
         name: Overview
         exit_sign: View Environment
     View-Environment:
