@@ -1,13 +1,10 @@
 modules:
     overview:
         name: Overview
-        exit_sign: View Environment
     view-environment:
         name: View Environment
-        exit_sign: Start Workshop
     exercises/01-sample-application:
         name: Sample Application
-        exit_sign: Next
     exercises/02-serving-sample-app:   
         name: Serving Sample Application
     summary:

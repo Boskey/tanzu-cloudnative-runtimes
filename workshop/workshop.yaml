@@ -1,8 +1,9 @@
-name: Markdown Sample
+name: Cloud Native Runtimes
 
 modules:
     activate:
-    - workshop-overview
-    - setup-environment
-    - exercises/01-sample-content
-    - workshop-summary
+    - overview
+    - view environment
+    - exercises/01-sample-application
+    - exercises/02-serving-sample-app
+    - summary
