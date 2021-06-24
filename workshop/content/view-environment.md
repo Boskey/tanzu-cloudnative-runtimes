@@ -16,7 +16,7 @@ name: Console
 
 You can also look at the namespaces via `kubectl`
 ```execute
-echo "kubectl get namespaces"
+kubectl get namespaces
 ```
 
 
