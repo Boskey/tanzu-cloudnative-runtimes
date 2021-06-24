@@ -1,6 +1,19 @@
-Include in this page any steps which should be run by a user to check that the workshop environment is setup correctly. Exactly what you provide in this step will depend on whether the workshop is designed to be deployed in a specific way.
+The setup has multiple tabs within the window on the right hand side.
 
-It is a good idea in this page to provide at least one sample command to run which is marked with the `execute` annotation so anyone doing the workshop understands they can click on marked commands to run them. For example:
+- The Terminal : We will be executing CLI commands through this Tab
+- Console : This is where you can take a look at the Kubernetes Dashbaord to see what is happening as you  run through the excercises.
+- Editor: This tab lets you edit any files needed.
+
+Any Applciations that we will be deploying will be opened in a new tab.
+
+**To View Cloud Native Runtimes** 
+
+Tanzu Cloud Native Runtimes has already been deployed on the Kubernetes Cluster. Click on the Console
+
+```dashboard:open-dashboard
+name: octant
+```
+
 
 ```execute
 date
