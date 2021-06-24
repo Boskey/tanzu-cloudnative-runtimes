@@ -11,9 +11,8 @@ Any Applciations that we will be deploying will be opened in a new tab.
 Tanzu Cloud Native Runtimes has already been deployed on the Kubernetes Cluster. Click on the Console
 
 ```dashboard:open-dashboard
-name: octant
+name: Console
 ```
-
 
 ```execute
 date
