@@ -6,7 +6,7 @@ The setup has multiple tabs within the window on the right hand side.
 
 Any Applciations that we will be deploying will be opened in a new tab.
 
-**To View Cloud Native Runtimes** 
+**To View Cloud Native Runtimes**
 
 Tanzu Cloud Native Runtimes has already been deployed on the Kubernetes Cluster. You can click on the second drop down bar from the righ of the console to take a look at the various namespaces created. Obeserve the namespaces `knative-eventing` and `kpack`. These namespaces hold worloads for Tanzu Cloud Native Runtimes.
 
