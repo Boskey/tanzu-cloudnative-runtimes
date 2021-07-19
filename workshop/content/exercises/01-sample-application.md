@@ -7,7 +7,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: serving.knative.dev/v1 # Current version of Knative
 kind: Service
 metadata:
-  name: petclinic-knative # The name of the app
+  name: petclinic # The name of the app
   namespace: default # The namespace the app will use
 spec:
   template:
