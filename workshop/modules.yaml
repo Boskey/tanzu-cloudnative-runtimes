@@ -1,8 +1,8 @@
 modules:
     overview:
-        name: Overview
+        name: Tanzu Cloud Native Runtimes Overview
     view-environment:
-        name: View Environment
+        name: Environment Overview
     exercises/01-sample-application:
         name: Sample Application
     exercises/02-serving-sample-app:   

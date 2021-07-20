@@ -3,12 +3,12 @@ We will be using a [Spring](https://spring.io/) based application called [Petcli
 The application has been containerized and the container image is store in the Docker Hub Repo.
 
 ```execute
-cat <<EOF | kubectl apply -f -
+cat <<EOF | kubectl apply  -f -
 apiVersion: serving.knative.dev/v1 # Current version of Knative
 kind: Service
 metadata:
   name: petclinic # The name of the app
-  namespace: default # The namespace the app will use
+  namespace: $WORKSHOP_NAMESPACE # The namespace the app will use
 spec:
   template:
     spec:
