@@ -4,9 +4,9 @@ modules:
     view-environment:
         name: Environment Overview
     exercises/01-sample-application:
-        name: Sample Application
+        name: Deploy a Sample Application
     exercises/02-serving-sample-app:   
-        name: Serving Sample Application
+        name: Traffic Management based on versions
     summary:
         name: Summary
         exit_sign: Finish
