@@ -10,18 +10,18 @@ Two Key fields to notice in the below file are
 
 
 ```execute
-cat <<EOF | kubectl apply  -f -
-apiVersion: serving.knative.dev/v1 # Current version of Knative
-kind: Service
-metadata:
-  name: $SESSION_NAMESPACE-1 # The name of the app
-  namespace: $WORKSHOP_NAMESPACE # The namespace the app will use
-spec:
-  template:
-    spec:
-      containers:
-        - image: ghcr.io/boskey/petclinic
-EOF
+  cat <<EOF | kubectl apply  -f -
+  apiVersion: serving.knative.dev/v1 # Current version of Knative
+  kind: Service
+  metadata:
+    name: $SESSION_NAMESPACE-1 # The name of the app
+    namespace: $WORKSHOP_NAMESPACE # The namespace the app will use
+  spec:
+    template:
+      spec:
+        containers:
+          - image: ghcr.io/boskey/petclinic
+  EOF
 ```
 The above command dployed the Pet Clinic App, to list the service Cloud Native Runtimes created, executethe following command:
 

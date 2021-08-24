@@ -14,7 +14,7 @@ spec:
     files: github.com/boskey/tanzu-cloudnative-runtimes
   session:
     namespaces:
-      budget: small
+      budget: medium
     applications:
       terminal:
         enabled: true
