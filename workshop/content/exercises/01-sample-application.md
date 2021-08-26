@@ -37,9 +37,9 @@ kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
 ```
 
 You will see that the Cloud Native Runtime Service created an Ingress with a URL to the application.
-```
+
 Click on the URL from the above command to see the application
-```
+
 > Note: if the status of the service shows `Not Ready`, wait a minute, try running the command to list the service again and then click the URL*
 
 You just deployed and accessed your first application to Cloud Native Runtimes!

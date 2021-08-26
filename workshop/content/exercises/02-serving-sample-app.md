@@ -24,6 +24,7 @@ Click here to select the image reference you are going to change.
 ```editor:select-matching-text
 file: ~/petclinic.yaml
 text: "ghcr.io/boskey/petclinic"
+```
 
 Notice the container image is different now and has the suffix `2`.
 ```editor:replace-text-selection
