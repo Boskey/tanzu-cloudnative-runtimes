@@ -59,6 +59,7 @@ Execute below to update the service.
 file: ~/petclinic.yaml
 path: spec
 value:
+
 traffic:
 - tag: current
   revisionName: {{ session_namespace }}-1-00001 
