@@ -57,7 +57,7 @@ Notice the `spec.traffic` element in the file below
 Execute below to update the service. 
 ```editor:insert-value-into-yaml
 file: ~/petclinic.yaml
-path: spec
+path: spec.template
 value:
 traffic:
 - tag: current
@@ -90,7 +90,7 @@ Okay, now that we see the new app `v2` and since everything seems to be fine, le
 
 Execute the below, notice the traffic is now defined to go to revision for app `v2` only.
 
-Select the traffic value for the `v1` app, we will next change the value to 0.
+Select the traffic values for the petclinic app, we will next change the value for `v1` to 0.
 ```editor:select-matching-text
 file: ~/petclinic.yaml
 text: "percent: 50"
@@ -99,10 +99,9 @@ start: 14
 stop: 16
 ```
 
-Now, change the percent of traffic received to 0.
-```editor:replace-text-selection
-file: ~/petclinic.yaml
-text: percent: 0
+Now, change the percent of traffic received by `v1` to 0.
+```execute-1
+sed -i '0,/50/{s/50/0/}' petclinic.yaml
 ```
 
 Change the traffic value for the `v2` app, we will next change the value to 0.
@@ -115,9 +114,8 @@ stop: 19
 ```
 
 Now, change the percent of traffic received by `v2` to 100.
-```editor:replace-text-selection
-file: ~/petclinic.yaml
-text: percent: 0
+```execute-1
+sed -i 's/50/100/g' petclinic.yaml
 ```
 
 Once again re-apply your `petclinic.yaml` to send all  the traffic to `v2`.
