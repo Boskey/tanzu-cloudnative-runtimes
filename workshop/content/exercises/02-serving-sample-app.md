@@ -57,18 +57,18 @@ Notice the `spec.traffic` element in the file below
 Execute below to update the service. 
 ```editor:insert-value-into-yaml
 file: ~/petclinic.yaml
-path: spec.template
+path: spec
 value:
-  traffic:
-  - tag: current
-    revisionName: {{ session_namespace }}-1-00001 
-    percent: 50
-  - tag: candidate
-    revisionName: {{ session_namespace }}-1-00002
-    percent: 50
-  - tag: latest
-    latestRevision: true
-    percent: 0   
+    traffic:
+    - tag: current
+      revisionName: {{ session_namespace }}-1-00001 
+      percent: 50
+    - tag: candidate
+      revisionName: {{ session_namespace }}-1-00002
+      percent: 50
+    - tag: latest
+      latestRevision: true
+      percent: 0   
 ```
 
 Re-apply your `petclinic.yaml` to split the traffic.
