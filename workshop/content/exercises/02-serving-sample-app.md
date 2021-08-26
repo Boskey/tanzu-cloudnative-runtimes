@@ -119,6 +119,11 @@ file: ~/petclinic.yaml
 text: percent: 0
 ```
 
+Once again re-apply your `petclinic.yaml` to send all  the traffic to `v2`.
+```execute-1
+kubectl apply -f petclinic.yaml
+```
+
 ### Refresh the application 
 
 Execute the below to fetch the URL for app again.
