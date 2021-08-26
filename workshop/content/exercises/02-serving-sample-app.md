@@ -90,27 +90,16 @@ Okay, now that we see the new app `v2` and since everything seems to be fine, le
 
 Execute the below, notice the traffic is now defined to go to revision for app `v2` only.
 
-Select the traffic value for the petclinic app `v1`, in the next step you change this to 0.
+Select the traffic value for both petclinic apps `v1` and `v2`.
 ```editor:select-matching-text
 file: ~/petclinic.yaml
 text: "percent: 50"
 isRegex: true
-start: 13
-stop: 16
 ```
 
 Now, change the percent of traffic received by `v1` to 0.
 ```execute-1
 sed -i '0,/50/{s/50/0/}' petclinic.yaml
-```
-
-Now, select the traffic value for the `v2` app.
-```editor:select-matching-text
-file: ~/petclinic.yaml
-text: "percent: 50"
-isRegex: true
-start: 16
-stop: 18
 ```
 
 Now, change the percent of traffic received by `v2` to 100 so all traffic goes to `v2`.
