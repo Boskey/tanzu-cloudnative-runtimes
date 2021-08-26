@@ -57,7 +57,7 @@ Notice the `spec.traffic` element in the file below
 Execute below to update the service. 
 ```editor:insert-value-into-yaml
 file: ~/petclinic.yaml
-path: spec.[0]
+path: spec.[1]
 value:
 traffic:
 - tag: current
