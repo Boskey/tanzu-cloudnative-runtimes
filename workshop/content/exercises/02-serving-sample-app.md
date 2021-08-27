@@ -78,9 +78,11 @@ kubectl apply -f petclinic.yaml
 
 Give the service a few seconds to be re-configured and updated. 
 
-## Move incoming traffic to the new app
+### Move incoming traffic to the new app
 
-Execute the below to fetch the URL for app again
+### Refresh the application 
+
+Execute the below to fetch the URL for app again.
 ```execute
 kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
 ```
