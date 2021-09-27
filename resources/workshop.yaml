@@ -28,12 +28,12 @@ spec:
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: ClusterRoleBinding
       metadata:
-        name: $(session_namespace)-cluster-admin
+        name: $(session_namespace)-knative-serving-namespaced-admin
       roleRef:
         apiGroup: rbac.authorization.k8s.io
         kind: ClusterRole
-        name: cluster-admin
+        name: knative-serving-namespaced-admin  
       subjects:
       - kind: ServiceAccount
         namespace: $(workshop_namespace)
-        name: $(service_account)    
+        name: $(service_account)
