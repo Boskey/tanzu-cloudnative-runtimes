@@ -1,17 +1,19 @@
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: training.educates.dev/v1beta1
 kind: Workshop
 metadata:
   name: tanzu-cloudnative-runtimes
 spec:
   title: Serverless Development using Tanzu Cloud Native Runtimes
   description: A workshop to showcase serverless capabilities in Tanzu
-  vendor: eduk8s.io
   difficulty: beginner
   duration: 15m
-  url: https://github.com/boskey/tanzu-cloudnative-runtimes
-  content:
-    #image: quay.io/eduk8s/lab-markdown-sample:master
-    files: github.com/boskey/tanzu-cloudnative-runtimes
+  url: https://github.com/vmware-tanzu-labs/tanzu-cloudnative-runtimes
+  workshop:
+    files:
+    - image:
+        url: $(image_repository)/tanzu-cloudnative-runtimes-files:latest
+      includePaths:
+      - /workshop/**
   session:
     namespaces:
       budget: medium
@@ -19,21 +21,53 @@ spec:
       terminal:
         enabled: true
         layout: split
+      vcluster:
+        enabled: true
       console:
         enabled: true
         vendor: octant
       editor:
         enabled: true
     objects:
-    - apiVersion: rbac.authorization.k8s.io/v1
-      kind: ClusterRoleBinding
+    - apiVersion: data.packaging.carvel.dev/v1alpha1
+      kind: Package
       metadata:
-        name: $(session_namespace)-knative-serving-namespaced-admin
-      roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: ClusterRole
-        name: knative-serving-namespaced-admin  
-      subjects:
-      - kind: ServiceAccount
-        namespace: $(workshop_namespace)
-        name: $(service_account)
+        name: kapp-controller.community.tanzu.vmware.com.0.35.0
+        namespace: $(session_namespace)-vc
+      spec:
+        refName: kapp-controller.community.tanzu.vmware.com
+        version: 0.35.0
+        releaseNotes: "kapp-controller 0.35.0 https://github.com/vmware-tanzu/carvel-kapp-controller"
+        licenses:
+          - "Apache 2.0"
+        template:
+          spec:
+            fetch:
+              - imgpkgBundle:
+                  image: projects.registry.vmware.com/tce/kapp-controller@sha256:6649d06214b2527d47c9b1d146799841656988c682ae7ec46ec4d0edb37c56fa
+            template:
+              - ytt:
+                  paths:
+                    - config/
+              - kbld:
+                  paths:
+                    - "-"
+                    - .imgpkg/images.yml
+            deploy:
+              - kapp: {}
+    - apiVersion: packaging.carvel.dev/v1alpha1
+      kind: PackageInstall
+      metadata:
+        name: kapp-controller
+        namespace: $(session_namespace)-vc
+      spec:
+        packageRef:
+          refName: kapp-controller.community.tanzu.vmware.com
+          versionSelection:
+            constraints: 0.35.0
+        cluster:
+          namespace: default
+          kubeconfigSecretRef:
+            name: $(vcluster_secret)
+            key: config
+        noopDelete: true
