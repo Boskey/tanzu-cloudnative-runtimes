@@ -22,7 +22,7 @@ spec:
         enabled: true
         layout: split
       vcluster:
-        enabled: true
+        enabled: false
       console:
         enabled: true
         vendor: octant
