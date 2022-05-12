@@ -1,6 +1,6 @@
 modules:
     overview:
-        name: Tanzu Cloud Native Runtimes Overview
+        name: Knative Overview
     view-environment:
         name: Environment Overview
     exercises/01-sample-application:

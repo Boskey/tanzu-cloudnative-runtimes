@@ -1,11 +1,15 @@
-Cloud Native Runtimes is a serverless solution to running applications on top of Kubernetes. Cloud Native Runtimes is based on the opensource project: Knative [https://knative.dev]
+Knative [https://knative.dev] is a serverless solution to running applications on top of Kubernetes.
+Simply put, Knative is a technology that abstracts and enhances the way that applications run on Kubernetes. Knative itself extends Kubernetes and has two main facets: Knative Serving and Knative Eventing. This workshop uses Knative Serving.
 
-Cloud Native Runtimes simplifies deploying microservices on Kubernetes. With a single command, you can build services based on your containerized applications without having to learn or build various Kubernetes objects. Cloud Native Runtimes automates the backend objects needed to run microservices on top of Kubernetes.
+Knative (Serving) simplifies deploying microservices on Kubernetes. With a single command, you can build services based on your containerized applications without having to learn or build various Kubernetes objects. Knative automates the backend objects needed to run microservices on top of Kubernetes.
+
+To learn more about Knative Serving check out [Whitney Lee](https://tanzu.vmware.com/developer/team/whitney-lee/)'s [video](https://tanzu.vmware.com/developer/tv/enlightning/6/) and [guide](https://tanzu.vmware.com/developer/guides/knative-serving-wi/). 
+To learn about Knative Eventing, check out [this video](https://tanzu.vmware.com/developer/tv/enlightning/7/).
 
 #### What you will do in the lab:
 
-* Deploy an app to Kubernetes with Cloud Native Runtimes and * understand what you did
-* install app v2 of your application and see how to manage each * version
-* Update the service such that incoming traffic is split between * both apps by 50%-50%
+* Deploy an app to Kubernetes with Knative and understand what you did
+* Install version 2 (v2) of your application and see how to manage each version
+* Update the service such that incoming traffic is split between both apps by 50%-50%
 * Observe the traffic being split between your applications
-* Next, move all the traffic coming to the new app version 2
+* Next, move all the traffic coming to the new app v2

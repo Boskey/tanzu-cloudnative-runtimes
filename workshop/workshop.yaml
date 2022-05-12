@@ -1,4 +1,4 @@
-name: Cloud Native Runtimes
+name: Serverless Development using Knative
 
 modules:
     activate:
