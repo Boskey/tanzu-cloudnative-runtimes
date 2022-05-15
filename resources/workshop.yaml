@@ -14,60 +14,186 @@ spec:
         url: $(image_repository)/tanzu-cloudnative-runtimes-files:latest
       includePaths:
       - /workshop/**
+      - /exercises/**
   session:
     namespaces:
-      budget: medium
+      budget: custom
+    env:
+      - name: TCE_VERSION
+        value: 0.12.0
     applications:
       terminal:
         enabled: true
         layout: split
       vcluster:
-        enabled: false
-      console:
         enabled: true
-        vendor: octant
+      registry:
+        enabled: true
+      docker:
+        enabled: true
+      git:
+        enabled: true
       editor:
         enabled: true
     objects:
-    - apiVersion: data.packaging.carvel.dev/v1alpha1
-      kind: Package
-      metadata:
-        name: kapp-controller.community.tanzu.vmware.com.0.35.0
-        namespace: $(session_namespace)-vc
-      spec:
-        refName: kapp-controller.community.tanzu.vmware.com
-        version: 0.35.0
-        releaseNotes: "kapp-controller 0.35.0 https://github.com/vmware-tanzu/carvel-kapp-controller"
-        licenses:
-          - "Apache 2.0"
-        template:
-          spec:
-            fetch:
-              - imgpkgBundle:
-                  image: projects.registry.vmware.com/tce/kapp-controller@sha256:6649d06214b2527d47c9b1d146799841656988c682ae7ec46ec4d0edb37c56fa
-            template:
-              - ytt:
-                  paths:
-                    - config/
-              - kbld:
-                  paths:
-                    - "-"
-                    - .imgpkg/images.yml
-            deploy:
-              - kapp: {}
-    - apiVersion: packaging.carvel.dev/v1alpha1
-      kind: PackageInstall
-      metadata:
-        name: kapp-controller
-        namespace: $(session_namespace)-vc
-      spec:
-        packageRef:
+      - apiVersion: data.packaging.carvel.dev/v1alpha1
+        kind: Package
+        metadata:
+          name: kapp-controller.community.tanzu.vmware.com.0.35.0
+          namespace: $(session_namespace)-vc
+        spec:
           refName: kapp-controller.community.tanzu.vmware.com
-          versionSelection:
-            constraints: 0.35.0
-        cluster:
-          namespace: default
-          kubeconfigSecretRef:
-            name: $(vcluster_secret)
-            key: config
-        noopDelete: true
+          version: 0.35.0
+          releaseNotes: "kapp-controller 0.35.0 https://github.com/vmware-tanzu/carvel-kapp-controller"
+          licenses:
+            - "Apache 2.0"
+          template:
+            spec:
+              fetch:
+                - imgpkgBundle:
+                    image: projects.registry.vmware.com/tce/kapp-controller@sha256:6649d06214b2527d47c9b1d146799841656988c682ae7ec46ec4d0edb37c56fa
+              template:
+                - ytt:
+                    paths:
+                      - config/
+                - kbld:
+                    paths:
+                      - "-"
+                      - .imgpkg/images.yml
+              deploy:
+                - kapp: {}
+      - apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: kapp-controller
+          namespace: $(session_namespace)-vc
+        spec:
+          packageRef:
+            refName: kapp-controller.community.tanzu.vmware.com
+            versionSelection:
+              constraints: 0.35.0
+          cluster:
+            namespace: default
+            kubeconfigSecretRef:
+              name: $(vcluster_secret)
+              key: config
+          noopDelete: true
+          syncPeriod: 24h
+      - apiVersion: data.packaging.carvel.dev/v1alpha1
+        kind: Package
+        metadata:
+          name: secretgen-controller.community.tanzu.vmware.com.0.8.0
+          namespace: $(session_namespace)-vc
+        spec:
+          refName: secretgen-controller.community.tanzu.vmware.com
+          version: 0.8.0
+          releaseNotes: secretgen-controller 0.8.0 https://github.com/vmware-tanzu/carvel-secretgen-controller
+          licenses:
+            - Apache 2.0
+          template:
+            spec:
+              fetch:
+                - imgpkgBundle:
+                    image: projects.registry.vmware.com/tce/secretgen-controller@sha256:e9631ae47719e5f3344589c40188206233e87efc8a58ab965a43dba3bc7787c0
+              template:
+                - ytt:
+                    paths:
+                      - config/
+                - kbld:
+                    paths:
+                      - '-'
+                      - .imgpkg/images.yml
+              deploy:
+                - kapp: { }
+          valuesSchema:
+            openAPIv3:
+              type: object
+              additionalProperties: false
+              description: OpenAPIv3 Schema for secretgen-controller
+              properties:
+                nodeSelector:
+                  nullable: true
+                  default: null
+                  description: NodeSelector configuration applied to all the deployments
+                deployment:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    updateStrategy:
+                      type: string
+                      default: null
+                      nullable: true
+                      description: Update strategy of deployments
+                    rollingUpdate:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        maxUnavailable:
+                          type: integer
+                          default: null
+                          nullable: true
+                          description: The maxUnavailable of rollingUpdate. Applied only if RollingUpdate is used as updateStrategy
+                        maxSurge:
+                          type: integer
+                          default: null
+                          nullable: true
+                          description: The maxSurge of rollingUpdate. Applied only if RollingUpdate is used as updateStrategy
+                daemonset:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    updateStrategy:
+                      type: string
+                      default: null
+                      nullable: true
+                      description: Update strategy of daemonsets
+                secretgenController:
+                  type: object
+                  additionalProperties: false
+                  description: Configuration for secretgen-controller
+                  properties:
+                    namespace:
+                      type: string
+                      default: secretgen-controller
+                      description: The namespace in which to deploy secretgen-controller
+                    createNamespace:
+                      type: boolean
+                      default: true
+                      description: Whether to create namespace specified for secretgen-controller
+                    image:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        repository:
+                          type: string
+                          default: ""
+                          description: The repository of secretgen-controller image
+                        path:
+                          type: string
+                          default: ""
+                          description: The path of image
+                        tag:
+                          type: string
+                          default: ""
+                          description: The image tag
+                        pullPolicy:
+                          type: string
+                          default: IfNotPresent
+                          description: The pull policy of image
+      - apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: secretgen-controller
+          namespace: $(session_namespace)-vc
+        spec:
+          packageRef:
+            refName: secretgen-controller.community.tanzu.vmware.com
+            versionSelection:
+              constraints: 0.8.0
+          cluster:
+            namespace: default
+            kubeconfigSecretRef:
+              name: $(vcluster_secret)
+              key: config
+          noopDelete: true
+          syncPeriod: 24h
