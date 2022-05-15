@@ -1,14 +1,14 @@
-This environemnt has multiple tabs within the window on the right hand side.
+This environment has multiple tabs within the window on the right hand side.
 
 - **The Terminal** : We will be executing CLI commands through this Tab
-- **Console** : This is where you can take a look at the Kubernetes Dashbaord to see what is happening as you  run through the excercises.
+- **Console** : This is where you can take a look at the Kubernetes Dashboard to see what is happening as you run through the exercises.
 - **Editor**: This tab lets you edit any files needed.
 
-Any Applciations that we will be deploying will be opened in a new tab.
+Any applications we will be deploying will be opened in a new tab.
 
-## View Tanzu Cloud Native Runtimes ##
+## View Knative ##
 
-Tanzu Cloud Native Runtimes has already been deployed on the Kubernetes Cluster. Click on the console tab on the righ -->click the menu bar (>>) on the left --> Click on `Namespaces` under Cluster to take a look at the various namespaces created. Obeserve the namespaces `knative-serving`. These namespaces hold worloads for Tanzu Cloud Native Runtimes.
+Knative has already been deployed on the Kubernetes Cluster. Click on the console tab on the right -->click the menu bar (>>) on the left --> Click on `Namespaces` under Cluster to take a look at the various namespaces created. Observe the namespace `knative-serving`.
 
 ```dashboard:open-dashboard
 name: Console

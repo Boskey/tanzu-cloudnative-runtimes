@@ -1,12 +1,12 @@
 
-We will be using a [Spring](https://spring.io/) based application called [Petclinic](https://github.com/spring-projects/spring-petclinic) to run in a serverless model.
+We will be using a [Spring](https://spring.io/) based application called [PetClinic](https://github.com/spring-projects/spring-petclinic) to run in a serverless model.
 
-The application has been containerized and the container image is store in the Github Container Repository.
+The application has been containerized and the container image is stored in Github Container Registry.
 
-The below `petclinic.yaml` file defines what application we want Cloud Native Runtimes to deploy.
+The below `petclinic.yaml` file defines what application we want Knative to deploy.
 Two Key fields to notice in the below file are:
 * `metadata.name` 
-  * This is the name the corresponding Service that will be created
+  * This is the name of the corresponding Service that will be created
 * `spec.container.image`
   * This is the Container image that will be deployed 
 
@@ -26,26 +26,26 @@ text: |
               - image: ghcr.io/boskey/petclinic
 ```
 
-Apply your `petclinic.yaml` to deploy your Pet Clinic App.
+Use `kubectl` to deploy your PetClinic App.
 ```execute-1
 kubectl apply -f petclinic.yaml
 ```
 
-To list the service Cloud Native Runtimes created, execute the following command:
+To display the service Knative created, execute the following command:
 ```execute-1
 kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
 ```
 
-You will see that the Cloud Native Runtime Service created an Ingress with a URL to the application.
+You will see that Knative used Contour to create an Ingress with a URL to the application.
 
 Click on the URL from the above command to see the application
 
 > Note: if the status of the service shows `Not Ready`, wait a minute, try running the command to list the service again and then click the URL*
 
-You just deployed and accessed your first application to Cloud Native Runtimes!
+You just deployed and accessed your first Knative application!
 
 ### What's happening here?
 
-In the backend, Cloud Native Runtimes pulled the container image that packaged the Petclinic App, deployed it on Kubernetes with a Revision, created a Service and Ingress for the app and returned the Ingress URL. 
+In the backend, Knative directed Kubernetes to pull the container image packaging the PetClinic app, deployed it with a Revision, created a Service and Ingress for the app, and returned the Ingress URL. 
 
-Cloud Native Runtimes figures out and creates all the Kubernetes objects needed to make all of the above work.
+Knative did the work of translating your microservice definition into the Kubernetes objects needed to make it functional.

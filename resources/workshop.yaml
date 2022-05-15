@@ -3,7 +3,7 @@ kind: Workshop
 metadata:
   name: tanzu-cloudnative-runtimes
 spec:
-  title: Serverless Development using Tanzu Cloud Native Runtimes
+  title: Serverless Development using Knative
   description: A workshop to showcase serverless capabilities in Tanzu
   difficulty: beginner
   duration: 15m
