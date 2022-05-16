@@ -3,8 +3,11 @@
 set -eo pipefail
 
 # This shouldn't be needed as being installed as package from workshop definition.
+# The TCE_VERSION variable is set by the separate tce package so only need to
+# set it here if that wasn't installed.
 
 if [[ $(which tanzu) == "" ]]; then
+ TCE_VERSION=0.12
  curl -L https://github.com/vmware-tanzu/community-edition/releases/download/v${TCE_VERSION}/tce-linux-amd64-v${TCE_VERSION}.tar.gz -o tce-linux-amd64-v${TCE_VERSION}.tar.gz
  tar -xf tce-linux-amd64-v${TCE_VERSION}.tar.gz
  mkdir -p /home/eduk8s/bin
