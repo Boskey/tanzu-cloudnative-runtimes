@@ -18,7 +18,17 @@ if [[ $(which tanzu) == "" ]]; then
 fi
 
 # Install TCE package repository
-tanzu package repository add tce-repo --url projects.registry.vmware.com/tce/main:$TCE_VERSION --namespace tanzu-package-repo-global
+RETRY=0
+MAX=10
+INTERVAL=5
+until [ $RETRY -ge $MAX ]
+do
+    tanzu package repository add tce-repo --url projects.registry.vmware.com/tce/main:$TCE_VERSION --namespace tanzu-package-repo-global && break
+    RETRY=$((RETRY+1))
+    echo "$RETRY/$MAX failed, waiting to try again . . ."
+    sleep $INTERVAL
+done
+
 
 # Install Knative Serving
 envsubst < /opt/workshop/setup.d/values.template > /opt/workshop/setup.d/values.yaml
