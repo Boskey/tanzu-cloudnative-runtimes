@@ -13,6 +13,7 @@ if [[ $(which tanzu) == "" ]]; then
  mkdir -p /home/eduk8s/bin
  cd tce-linux-amd64-v${TCE_VERSION}
  cp tanzu /home/eduk8s/bin/tanzu
+ rm -rf $HOME/.config/tanzu-plugins
  ./install.sh
 fi
 
