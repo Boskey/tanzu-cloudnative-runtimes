@@ -178,11 +178,12 @@ spec:
       - apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
-          name: app-$(session_namespace).default.$(ingress_domain)
+          name: app-$(session_namespace)
           namespace: $(session_namespace)
         spec:
           rules:
-          - http:
+          - host: app-$(session_namespace).default.$(ingress_domain)
+            http:
               paths:
               - path: /
                 pathType: Prefix
