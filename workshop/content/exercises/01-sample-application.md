@@ -17,8 +17,8 @@ text: |
       apiVersion: serving.knative.dev/v1 # Current version of Knative
       kind: Service
       metadata:
-        name: {{ session_namespace }}-1 # The name of the app
-        namespace: {{ workshop_namespace }} # The namespace the app will use
+        name: app-{{ session_namespace }} # The name of the app
+        namespace: default # The namespace the app will use
       spec:
         template:
           spec:
@@ -33,7 +33,7 @@ kubectl apply -f petclinic.yaml
 
 To display the service Knative created, execute the following command:
 ```execute-1
-kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
+kubectl get ksvc app-{{session_namespace}} -n default
 ```
 
 You will see that Knative used Contour to create an Ingress with a URL to the application.

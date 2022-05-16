@@ -61,10 +61,10 @@ path: spec
 value:
     traffic:
     - tag: current
-      revisionName: {{ session_namespace }}-1-00001 
+      revisionName: app-{{ session_namespace }}-00001 
       percent: 50
     - tag: candidate
-      revisionName: {{ session_namespace }}-1-00002
+      revisionName: app-{{ session_namespace }}-00002
       percent: 50
     - tag: latest
       latestRevision: true
@@ -84,7 +84,7 @@ Give the service a few seconds to be updated.
 
 Execute the below to fetch the URL for app again.
 ```execute
-kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
+kubectl get ksvc app-{{ session_namespace }} -n default
 ```
 You will notice that the traffic is now splitting between the old and new versions after each refresh.
 
@@ -118,7 +118,7 @@ kubectl apply -f petclinic.yaml
 
 Execute the below to fetch the URL for app again.
 ```execute
-kubectl get ksvc {{ session_namespace }}-1 -n {{ workshop_namespace }}
+kubectl get ksvc app-{{ session_namespace }} -n default
 ```
 
 Notice you only see the new version of the app as was originally intended.

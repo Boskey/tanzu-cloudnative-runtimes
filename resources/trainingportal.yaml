@@ -1,13 +1,15 @@
 apiVersion: training.educates.dev/v1beta1
 kind: TrainingPortal
 metadata:
-  name: tanzu-cloudnative-runtimes
+  name: lab-tanzu-cloudnative-runtimes
 spec:
   portal:
     registration:
       type: anonymous
+    updates:
+      workshop: true
   workshops:
-  - name: tanzu-cloudnative-runtimes
-    capacity: 3
+  - name: lab-tanzu-cloudnative-runtimes
+    capacity: 1
     expires: 60m
     orphaned: 5m

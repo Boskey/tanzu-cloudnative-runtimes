@@ -2,13 +2,15 @@
 
 set -eo pipefail
 
+# This shouldn't be needed as being installed as package from workshop definition.
+
 if [[ $(which tanzu) == "" ]]; then
-  curl -L https://github.com/vmware-tanzu/community-edition/releases/download/v${TCE_VERSION}/tce-linux-amd64-v${TCE_VERSION}.tar.gz -o tce-linux-amd64-v${TCE_VERSION}.tar.gz
-  tar -xf tce-linux-amd64-v${TCE_VERSION}.tar.gz
-  mkdir -p /home/eduk8s/bin
-  cd tce-linux-amd64-v${TCE_VERSION}
-  cp tanzu /home/eduk8s/bin/tanzu
-  ./install.sh
+ curl -L https://github.com/vmware-tanzu/community-edition/releases/download/v${TCE_VERSION}/tce-linux-amd64-v${TCE_VERSION}.tar.gz -o tce-linux-amd64-v${TCE_VERSION}.tar.gz
+ tar -xf tce-linux-amd64-v${TCE_VERSION}.tar.gz
+ mkdir -p /home/eduk8s/bin
+ cd tce-linux-amd64-v${TCE_VERSION}
+ cp tanzu /home/eduk8s/bin/tanzu
+ ./install.sh
 fi
 
 # Install TCE package repository

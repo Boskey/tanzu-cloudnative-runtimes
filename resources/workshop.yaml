@@ -1,13 +1,10 @@
 apiVersion: training.educates.dev/v1beta1
 kind: Workshop
 metadata:
-  name: tanzu-cloudnative-runtimes
+  name: lab-tanzu-cloudnative-runtimes
 spec:
   title: Serverless Development using Knative
   description: A workshop to showcase serverless capabilities in Tanzu
-  difficulty: beginner
-  duration: 15m
-  url: https://github.com/vmware-tanzu-labs/tanzu-cloudnative-runtimes
   workshop:
     files:
     - image:
@@ -15,25 +12,23 @@ spec:
       includePaths:
       - /workshop/**
       - /exercises/**
+    packages:
+    - name: tce
+      files:
+      - image:
+          url: ghcr.io/vmware-tanzu-labs/educates-extension-packages/tce-0.12:sha-5f9081f
   session:
     namespaces:
       budget: custom
-    env:
-      - name: TCE_VERSION
-        value: 0.12.0
     applications:
       terminal:
         enabled: true
         layout: split
-      vcluster:
-        enabled: true
-      registry:
-        enabled: true
-      docker:
-        enabled: true
-      git:
+      console:
         enabled: true
       editor:
+        enabled: true
+      vcluster:
         enabled: true
     objects:
       - apiVersion: data.packaging.carvel.dev/v1alpha1
@@ -105,81 +100,6 @@ spec:
                       - .imgpkg/images.yml
               deploy:
                 - kapp: { }
-          valuesSchema:
-            openAPIv3:
-              type: object
-              additionalProperties: false
-              description: OpenAPIv3 Schema for secretgen-controller
-              properties:
-                nodeSelector:
-                  nullable: true
-                  default: null
-                  description: NodeSelector configuration applied to all the deployments
-                deployment:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    updateStrategy:
-                      type: string
-                      default: null
-                      nullable: true
-                      description: Update strategy of deployments
-                    rollingUpdate:
-                      type: object
-                      additionalProperties: false
-                      properties:
-                        maxUnavailable:
-                          type: integer
-                          default: null
-                          nullable: true
-                          description: The maxUnavailable of rollingUpdate. Applied only if RollingUpdate is used as updateStrategy
-                        maxSurge:
-                          type: integer
-                          default: null
-                          nullable: true
-                          description: The maxSurge of rollingUpdate. Applied only if RollingUpdate is used as updateStrategy
-                daemonset:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    updateStrategy:
-                      type: string
-                      default: null
-                      nullable: true
-                      description: Update strategy of daemonsets
-                secretgenController:
-                  type: object
-                  additionalProperties: false
-                  description: Configuration for secretgen-controller
-                  properties:
-                    namespace:
-                      type: string
-                      default: secretgen-controller
-                      description: The namespace in which to deploy secretgen-controller
-                    createNamespace:
-                      type: boolean
-                      default: true
-                      description: Whether to create namespace specified for secretgen-controller
-                    image:
-                      type: object
-                      additionalProperties: false
-                      properties:
-                        repository:
-                          type: string
-                          default: ""
-                          description: The repository of secretgen-controller image
-                        path:
-                          type: string
-                          default: ""
-                          description: The path of image
-                        tag:
-                          type: string
-                          default: ""
-                          description: The image tag
-                        pullPolicy:
-                          type: string
-                          default: IfNotPresent
-                          description: The pull policy of image
       - apiVersion: packaging.carvel.dev/v1alpha1
         kind: PackageInstall
         metadata:
@@ -197,3 +117,77 @@ spec:
               key: config
           noopDelete: true
           syncPeriod: 24h
+      - apiVersion: data.packaging.carvel.dev/v1alpha1
+        kind: Package
+        metadata:
+          name: contour.community.tanzu.vmware.com.1.20.1
+          namespace: $(session_namespace)-vc
+        spec:
+          refName: contour.community.tanzu.vmware.com
+          version: 1.20.1
+          releaseNotes: "contour 1.20.1 https://github.com/projectcontour/contour/releases/tag/v1.20.1"
+          releasedAt: 2022-02-24T00:00:00Z
+          licenses:
+            - "Apache 2.0"
+          template:
+            spec:
+              fetch:
+                - imgpkgBundle:
+                    image: projects.registry.vmware.com/tce/contour@sha256:0128c3458d57cd637c198b3a6377bb1eca6e23301f27710ac29d9d0ee1c5bd09
+              template:
+                - ytt:
+                    paths:
+                      - config/
+                - kbld:
+                    paths:
+                      - "-"
+                      - .imgpkg/images.yml
+              deploy:
+                - kapp: {}
+          capacityRequirementsDescription: "Varies significantly based on number of Services, Ingresses/HTTPProxies, etc. A starting point is 128MB RAM and 0.5 CPU for each Contour and Envoy pod, but this can and should be tuned based on observed usage."
+      - apiVersion: v1
+        kind: Secret
+        metadata:
+          name: contour-values
+          namespace: $(session_namespace)-vc
+        stringData:
+          values.yml: |-
+            envoy:
+              service:
+                type: ClusterIP
+      - apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: contour
+          namespace: $(session_namespace)-vc
+        spec:
+          packageRef:
+            refName: contour.community.tanzu.vmware.com
+            versionSelection:
+              constraints: 1.20.1
+          values:
+            - secretRef:
+                name: contour-values
+          cluster:
+            namespace: default
+            kubeconfigSecretRef:
+              name: $(vcluster_secret)
+              key: config
+          noopDelete: true
+          syncPeriod: 24h
+      - apiVersion: networking.k8s.io/v1
+        kind: Ingress
+        metadata:
+          name: app-$(session_namespace).default.$(ingress_domain)
+          namespace: $(session_namespace)
+        spec:
+          rules:
+          - http:
+              paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: envoy-x-projectcontour-x-my-vcluster
+                    port:
+                      number: 80
