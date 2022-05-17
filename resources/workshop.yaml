@@ -8,7 +8,7 @@ spec:
   workshop:
     files:
     - image:
-        url: $(image_repository)/tanzu-cloudnative-runtimes-files:latest
+        url: $(image_repository)/lab-tanzu-cloudnative-runtimes-files:latest
       includePaths:
       - /workshop/**
       - /exercises/**
