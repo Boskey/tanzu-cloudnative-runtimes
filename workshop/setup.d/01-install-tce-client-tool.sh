@@ -9,7 +9,6 @@ set -eo pipefail
 # so we inherit that value.
 
 if [[ $(which tanzu) == "" ]]; then
-    #TCE_VERSION=0.12.0
     curl -L https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VERSION}/tce-linux-amd64-${TCE_VERSION}.tar.gz -o tce-linux-amd64-${TCE_VERSION}.tar.gz
     tar -xf tce-linux-amd64-${TCE_VERSION}.tar.gz
     mkdir -p /home/eduk8s/bin
