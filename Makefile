@@ -21,8 +21,8 @@ update-workshop:
 	kubectl apply -f resources/workshop.yaml
 
 delete-workshop:
-	kubectl delete -f resources/trainingportal.yaml --cascade=foreground
-	kubectl delete -f resources/workshop.yaml
+	-kubectl delete -f resources/trainingportal.yaml --cascade=foreground
+	-kubectl delete -f resources/workshop.yaml
 
 open-workshop:
 	URL=`kubectl get trainingportal/$(WORKSHOP_NAME) -o go-template={{.status.educates.url}}`; (test -x /usr/bin/xdg-open && xdg-open $$URL) || (test -x /usr/bin/open && open $$URL) || true
